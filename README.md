@@ -7,7 +7,7 @@ O projeto também inclui um sistema de autenticação (Bônus), onde apenas usu�
 ## Requisitos Cobertos
 
   - [x] **1. Cadastro de tarefas:** Título, descrição opcional, status e data.
-  - [x"x"] **2. Listagem de tarefas:** Paginação e filtro por status.
+  - [x] **2. Listagem de tarefas:** Paginação e filtro por status.
   - [x] **3. Edição de tarefas:** Edição de título, descrição e status.
   - [x] **4. Exclusão de tarefas:** Botão de excluir.
   - [x] **5. Soft delete:** Lixeira e restauração de tarefas.

@@ -1,59 +1,117 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Gerenciador de Tarefas (To-do List)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este é um projeto de um Gerenciador de Tarefas (To-do list) desenvolvido como desafio técnico, utilizando o framework Laravel. A aplicação permite o cadastro, listagem, edição, exclusão (com soft-delete) e restauração de tarefas, seguindo as melhores práticas do framework.
 
-## About Laravel
+O projeto também inclui um sistema de autenticação (Bônus), onde apenas usuários logados podem gerenciar suas tarefas.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Requisitos Cobertos
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+  - [x] **1. Cadastro de tarefas:** Título, descrição opcional, status e data.
+  - [x"x"] **2. Listagem de tarefas:** Paginação e filtro por status.
+  - [x] **3. Edição de tarefas:** Edição de título, descrição e status.
+  - [x] **4. Exclusão de tarefas:** Botão de excluir.
+  - [x] **5. Soft delete:** Lixeira e restauração de tarefas.
+  - [x] **6. Validação:** Uso de `FormRequest` para validação no backend.
+  - [x] **7. Rotas:** Uso de `Route::resource` e rotas customizadas.
+  - [x] **8. Banco de dados:** Uso de *Migrations* do Laravel.
+  - [x] **9. Modelo Eloquent:** Modelo `Task` configurado com `fillable` e `SoftDeletes`.
+  - [x] **10. Views com Blade:** Uso de *layouts* e *partials* (`@extends`, `@yield`).
+  - [x] **11. (Bônus) Autenticação:** Rotas protegidas com `middleware('auth')`.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-----
 
-## Learning Laravel
+### 1\. Código Fonte
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+(Disponível neste repositório)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2\. Instruções para rodar a aplicação localmente
 
-## Laravel Sponsors
+Para executar este projeto em seu ambiente de desenvolvimento, siga os passos abaixo:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1.  **Clonar o Repositório:**
 
-### Premium Partners
+    ```bash
+    git clone https://github.com/viniciuscribeiro/projeto-tarefas-laravel.git
+    cd projeto-tarefas
+    ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+2.  **Copiar Arquivo de Ambiente:**
 
-## Contributing
+      * O arquivo `.env` não é enviado para o GitHub por segurança. Copie o arquivo de exemplo:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    <!-- end list -->
 
-## Code of Conduct
+    ```bash
+    cp .env.example .env
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3.  **Configurar o Banco de Dados (XAMPP/WAMP):**
 
-## Security Vulnerabilities
+      * Abra seu painel de controle e inicie os serviços **Apache** e **MySQL**.
+      * Crie um novo banco de dados (ex: `laravel_tarefas`).
+      * Abra o arquivo `.env` e configure suas credenciais:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    <!-- end list -->
 
-## License
+    ```env
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_DATABASE=laravel_tarefas
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4.  **Instalar Dependências (PHP):**
+
+    ```bash
+    composer install
+    ```
+
+5.  **Gerar a Chave da Aplicação:**
+
+    ```bash
+    php artisan key:generate
+    ```
+
+6.  **Rodar as Migrations:**
+
+      * Este comando irá criar todas as tabelas no banco de dados (tarefas, usuários, etc.).
+
+    <!-- end list -->
+
+    ```bash
+    php artisan migrate
+    ```
+
+7.  **Iniciar o Servidor:**
+
+    ```bash
+    php artisan serve
+    ```
+
+8.  **Acessar a Aplicação:**
+
+      * Abra seu navegador no endereço: **`http://127.0.0.1:8000`**
+      * Você será redirecionado para a tela de Login. **Crie uma conta** para começar a usar.
+
+*(Nota: Este projeto foi configurado para **NÃO** depender do `npm run dev`. O CSS é auto-contido no layout principal, garantindo funcionalidade imediata).*
+
+-----
+
+### 3\. Breve descrição das decisões tomadas e eventuais melhorias futuras
+
+#### Decisões Tomadas
+
+  * **Framework:** O projeto foi desenvolvido em **Laravel 12**, seguindo estritamente o padrão MVC (Model-View-Controller) solicitado.
+  * **Banco de Dados (Req. 8, 9):** Foi utilizado o **Eloquent ORM** com *Migrations* para estruturar a tabela `tasks`. O `SoftDeletes` (Req. 5) foi implementado no *Model* e na *Migration* para permitir a restauração de tarefas.
+  * **Rotas (Req. 7):** As rotas principais do CRUD foram implementadas usando `Route::resource()`. Rotas customizadas (`/tasks/trash` e `/tasks/{id}/restore`) foram adicionadas para gerenciar a lixeira.
+  * **Validação (Req. 6):** Toda a validação dos dados de entrada é centralizada em uma classe `TaskRequest`, seguindo a melhor prática do Laravel para manter os *controllers* limpos.
+  * **Views (Req. 10):** A interface foi construída com **Blade**, utilizando um layout principal (`layouts/app.blade.php`) que é estendido por todas as outras views (`@extends` e `@yield`). O CSS foi contido no layout principal para simplicidade e para evitar a complexidade do pipeline de *assets* (Vite/NPM), garantindo que o projeto funcione "fora da caixa".
+  * **Bônus (Req. 11):** A autenticação foi implementada usando o *backend* do pacote **Laravel Breeze**. Todas as rotas de gerenciamento de tarefas foram agrupadas sob o *middleware* `auth` no arquivo `routes/web.php`, garantindo que apenas usuários logados possam acessá-las.
+
+#### Melhorias Futuras
+
+1.  **Tarefas por Usuário:** Atualmente, todos os usuários logados veem todas as tarefas. A melhoria mais importante seria adicionar um `user_id` na tabela `tasks` para que cada usuário veja e gerencie apenas as *suas próprias* tarefas.
+2.  **Testes Automatizados:** Implementar testes unitários e de funcionalidade (PHPUnit/PEST) para garantir a estabilidade do CRUD e das regras de validação.
+3.  **Front-end (AJAX):** Substituir os *reloads* de página ao criar ou editar uma tarefa por requisições assíncronas (AJAX/Fetch API), tornando a interface mais rápida e dinâmica.
+4.  **Prioridades e Prazos:** Adicionar campos de `priority` (baixa, média, alta) e `due_date` (data de vencimento) ao *Model* `Task`.
